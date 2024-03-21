@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { config } from 'dotenv';
 
 import "./App.css";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
@@ -11,7 +12,7 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
-const API_KEY = process.env.API_KEY;
+config();
 
 function App() {
   
@@ -81,7 +82,7 @@ function App() {
       const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
-          "Authorization": "Bearer " + API_KEY,
+          "Authorization": "Bearer " + process.env.API_KEY,
           "Content-Type": "application/json"
         },
         body: JSON.stringify(apiRequestBody),
